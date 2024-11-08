@@ -1,12 +1,13 @@
-import "dotenv/config"
-
+import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
+import process from "node:process";
 
 export default defineConfig({
+  schema: "./src/db/schema.ts",
   dialect: "turso",
-  schema: "./schema.ts",
+  out:"./drizzle",
   dbCredentials: {
-    url: Deno.env.get("DATABASE_URL")!, 
-    authToken: Deno.env.get("DATABASE_AUTH_TOKEN"), 
+    url: process.env.TURSO_DATABASE_URL!,
+    authToken: process.env.TURSO_AUTH_TOKEN!,
   },
 });
