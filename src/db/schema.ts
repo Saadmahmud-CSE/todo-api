@@ -1,9 +1,14 @@
-import { integer } from "drizzle-orm/pg-core";
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { string } from "zod";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+export const usersTable = sqliteTable("users", {
+  user: text().notNull().primaryKey(),
+});
 
 export const todosTable = sqliteTable("todos", {
-  id: integer().primaryKey(),
-  task: text(),
-  status: text(),
+  id: integer().notNull().primaryKey(),
+  title: text().notNull(),
+  status: text().notNull(),
+  createdAt: text().notNull(),
+  updatedAt: text().notNull(),
+  user: text().notNull(),
 });
